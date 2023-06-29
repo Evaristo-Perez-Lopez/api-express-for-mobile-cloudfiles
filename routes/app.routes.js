@@ -1,5 +1,5 @@
 import express from "express";
-
+import userController from "../controllers/user.controller.js";
 class AppRoutes {
 	routes(app = express.application) {
 		app.get("/hello", (req, res) => {
@@ -7,11 +7,7 @@ class AppRoutes {
 				message: "Hi broda",
 			});
 		});
-		app.get("/calculate_tax", (req, res) => {
-			const { amount } = req.body;
-			const tax = amount * 0.16;
-			res.json({ ok: true, data: { tax } });
-		});
+		app.post("/calculate_tax", userController.calculateTax);
 	}
 }
 
